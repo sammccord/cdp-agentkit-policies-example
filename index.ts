@@ -7,7 +7,10 @@ import {
 } from "@coinbase/agentkit";
 import { getVercelAITools } from "@coinbase/agentkit-vercel-ai-sdk";
 import { generateText } from "ai";
-import { anthropic, type AnthropicProviderOptions } from "@ai-sdk/anthropic";
+import {
+  createAnthropic,
+  type AnthropicProviderOptions,
+} from "@ai-sdk/anthropic";
 import { createPublicClient, http } from "viem";
 import { baseSepolia } from "viem/chains";
 
@@ -80,11 +83,14 @@ const agentKit = await AgentKit.from({
     // We need this to convert ETH to WETH
     wethActionProvider(),
     // We need this to supply collateral once we've converted
-    compoundActionProvider()
+    compoundActionProvider(),
   ],
 });
 
 // Use whatever model you fancy.
+const anthropic = createAnthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 const model = anthropic("claude-3-7-sonnet-20250219");
 const tools = getVercelAITools(agentKit);
 const providerOptions = {

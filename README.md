@@ -11,6 +11,21 @@ This repository demonstrates how you can use a CDP Wallet Policy in conjunction 
 
 ## Running the example
 
+Setup environment variables:
+
+```bash
+cp .env.example .env
+```
+
+We'll need the following:
+
+```bash
+CDP_API_KEY_ID="YOUR_API_KEY_ID"
+CDP_API_KEY_SECRET="YOUR_API_KEY_SECRET"
+CDP_WALLET_SECRET="YOUR_WALLET_SECRET"
+ANTHROPIC_API_KEY="YOUR_ANTHROPIC_API_KEY"
+```
+
 To install dependencies:
 
 ```bash
@@ -22,5 +37,3 @@ To run:
 ```bash
 bun run index.ts
 ```
-
-This project was created using `bun init` in bun v1.2.13. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
