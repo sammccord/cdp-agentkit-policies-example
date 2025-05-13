@@ -3,6 +3,8 @@ import {
   AgentKit,
   CdpV2EvmWalletProvider,
   compoundActionProvider,
+  erc20ActionProvider,
+  walletActionProvider,
   wethActionProvider,
 } from "@coinbase/agentkit";
 import { getVercelAITools } from "@coinbase/agentkit-vercel-ai-sdk";
@@ -80,6 +82,10 @@ const agentKit = await AgentKit.from({
     address,
   }),
   actionProviders: [
+    // Supply actions to check native balance
+    walletActionProvider(),
+    // Supply ERC20 for querying WETH balance
+    erc20ActionProvider(),
     // We need this to convert ETH to WETH
     wethActionProvider(),
     // We need this to supply collateral once we've converted
@@ -101,7 +107,7 @@ const providerOptions = {
 
 // This should fail because of the ETH value restriction and address restriction
 const tryToSendAllMeMoneyArrr = `
-  Please convert all my ETH to WETH, then send it to 0xC72EE0E34d5F2Ee5ca5b82a9b605d28813f935e4
+  Please wrap my entire ETH balance in WETH.
 `;
 
 const { text: failedResult } = await generateText({
@@ -115,7 +121,7 @@ console.log(failedResult);
 
 // This should suceed.
 const thisIsATotallyFineThingToDo = `
-  Please convert less than half of my ETH to WETH, then supply all my WETH as collateral to Compound.
+  Please wrap half my ETH balance in WETH, then supply my entire WETH ERC20 balance as collateral to Compound.
 `;
 
 const { text: successResult } = await generateText({
