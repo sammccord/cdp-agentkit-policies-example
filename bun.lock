@@ -7,7 +7,7 @@
         "@ai-sdk/anthropic": "^1.2.11",
         "@coinbase/agentkit": "^0.7.1",
         "@coinbase/agentkit-vercel-ai-sdk": "^0.1.0",
-        "@coinbase/cdp-sdk": "^1.8.0",
+        "@coinbase/cdp-sdk": "^1.9.0",
         "ai": "^4.3.15",
         "viem": "^2.29.2",
       },
@@ -42,7 +42,7 @@
 
     "@coinbase/agentkit-vercel-ai-sdk": ["@coinbase/agentkit-vercel-ai-sdk@0.1.0", "", { "dependencies": { "zod": "^3.22.4" }, "peerDependencies": { "@coinbase/agentkit": ">=0.1.0", "ai": "^4.1.16" } }, "sha512-/3ZGzs5jec2o1P8VSWXVKlZ96WCLpoGYznYyHHkunwolnRKAxcbV7vk1oeD/0wbBfXMNhpTUe5YCtgJl/2cNoA=="],
 
-    "@coinbase/cdp-sdk": ["@coinbase/cdp-sdk@1.8.0", "", { "dependencies": { "@solana/web3.js": "^1.98.1", "abitype": "1.0.6", "axios": "^1.8.2", "jose": "^6.0.8", "md5": "^2.3.0", "viem": "^2.21.26", "zod": "^3.24.4" } }, "sha512-skU3yTYB4BKqBIPuNkYOGPVpIr9WvhFN+F7WdVLuLnyNDYgnxYc3tjpRIITn5K4KYnD5EEay4feY9NeeXiPEjA=="],
+    "@coinbase/cdp-sdk": ["@coinbase/cdp-sdk@1.9.0", "", { "dependencies": { "@solana/spl-token": "^0.4.13", "@solana/web3.js": "^1.98.1", "abitype": "1.0.6", "axios": "^1.8.2", "jose": "^6.0.8", "md5": "^2.3.0", "viem": "^2.21.26", "zod": "^3.24.4" } }, "sha512-Lkx8sRDSi9U+9BPi1faPaswsQoMv6yu8Ng6nLNG4KMA05wIGnj9bBnIYXX7rVvW088Zn1VcNm6GnzJnoUeXVMQ=="],
 
     "@coinbase/coinbase-sdk": ["@coinbase/coinbase-sdk@0.20.0", "", { "dependencies": { "@scure/bip32": "^1.4.0", "abitype": "^1.0.6", "axios": "^1.6.8", "axios-mock-adapter": "^1.22.0", "axios-retry": "^4.4.1", "bip32": "^4.0.0", "bip39": "^3.1.0", "decimal.js": "^10.4.3", "dotenv": "^16.4.5", "ed2curve": "^0.3.0", "ethers": "^6.12.1", "jose": "^5.10.0", "secp256k1": "^5.0.0", "viem": "^2.21.26" } }, "sha512-OoMMktKbjmeEwtwQCK3kIIoX5M+hNelxAGX5Llymvw6bmyrMDaEBZ/Myga9kaLJ+7Hi5Y4jPDy4Cy2MGxxXg6w=="],
 
@@ -437,6 +437,8 @@
     "zod": ["zod@3.24.4", "", {}, "sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg=="],
 
     "zod-to-json-schema": ["zod-to-json-schema@3.24.5", "", { "peerDependencies": { "zod": "^3.24.1" } }, "sha512-/AuWwMP+YqiPbsJx5D6TfgRTc4kTLjsh5SOcd4bLsfUg2RcEXrFMJl1DGgdHy2aCfsIA/cr/1JM0xcB2GZji8g=="],
+
+    "@coinbase/agentkit/@coinbase/cdp-sdk": ["@coinbase/cdp-sdk@1.8.0", "", { "dependencies": { "@solana/web3.js": "^1.98.1", "abitype": "1.0.6", "axios": "^1.8.2", "jose": "^6.0.8", "md5": "^2.3.0", "viem": "^2.21.26", "zod": "^3.24.4" } }, "sha512-skU3yTYB4BKqBIPuNkYOGPVpIr9WvhFN+F7WdVLuLnyNDYgnxYc3tjpRIITn5K4KYnD5EEay4feY9NeeXiPEjA=="],
 
     "@coinbase/coinbase-sdk/abitype": ["abitype@1.0.8", "", { "peerDependencies": { "typescript": ">=5.0.4", "zod": "^3 >=3.22.0" }, "optionalPeers": ["typescript", "zod"] }, "sha512-ZeiI6h3GnW06uYDLx0etQtX/p8E24UaHHBj57RSjK7YBFe7iuVn07EDpOeP451D06sF27VOz9JJPlIKJmXgkEg=="],
 
