@@ -74,19 +74,17 @@ async function main() {
     update: { accountPolicy: policy.id },
   });
 
-  // Initialize AgentKit with our CDP V2 Wallet provider and address.
-  const walletProvider = await CdpV2EvmWalletProvider.configureWithWallet({
-    apiKeyId: process.env.CDP_API_KEY_ID,
-    apiKeySecret: process.env.CDP_API_KEY_SECRET,
-    walletSecret: process.env.CDP_WALLET_SECRET,
-    address,
-    networkId: "base-sepolia",
-  });
-  // Now we need to bootstrap AgentKit
+  // Initialize AgentKit with a CDP V2 Wallet provider with protected address.
   const agentKit = await AgentKit.from({
-    walletProvider: walletProvider,
+    walletProvider: await CdpV2EvmWalletProvider.configureWithWallet({
+      apiKeyId: process.env.CDP_API_KEY_ID,
+      apiKeySecret: process.env.CDP_API_KEY_SECRET,
+      walletSecret: process.env.CDP_WALLET_SECRET,
+      address,
+      networkId: "base-sepolia",
+    }),
     actionProviders: [
-      // Supply actions to check native balance and send ETH
+      // Supply actions to check native balance and send ETH, which we want the model to attempt to do.
       walletActionProvider(),
       // We need this to convert ETH to WETH
       wethActionProvider(),
@@ -99,32 +97,31 @@ async function main() {
   });
   const model = anthropic("claude-3-7-sonnet-20250219");
   const tools = getVercelAITools(agentKit);
+  const generateOptions = {
+    model, tools, maxSteps: 10
+  }
 
-  // This should fail because of the ETH value restriction
+  // This should fail because of the ETH value and allowlist restrictions.
   const tryToSendAllMeMoneyArrr = `
     Please send my entire ETH balance in ETH to 0x000000000000000000000000000000000000dead. Use only the base-sepolia network for all contract interactions.
   `;
   console.log(tryToSendAllMeMoneyArrr)
 
   const failure = await generateText({
-    model,
-    tools,
+    ...generateOptions,
     prompt: tryToSendAllMeMoneyArrr,
-    maxSteps: 10,
   });
   console.log(failure.text);
 
-  // This should suceed.
+  // This should succeed.
   const thisIsATotallyFineThingToDo = `
     Please wrap 1/10 of my current ETH balance in WETH. Use only the base-sepolia network for all contract interactions.
   `;
   console.log(thisIsATotallyFineThingToDo)
 
   const success = await generateText({
-    model,
-    tools,
+    ...generateOptions,
     prompt: thisIsATotallyFineThingToDo,
-    maxSteps: 10,
   });
   console.log(success.text);
 }
