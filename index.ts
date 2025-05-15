@@ -55,13 +55,13 @@ async function main() {
               addresses: ["0x4200000000000000000000000000000000000006"],
               operator: "in",
             },
+            { type: "evmNetwork", networks: ["base-sepolia"], operator: "in" },
             {
               type: "ethValue",
               // Decide how much we should allow our agent to send in a single transaction.
               ethValue: restrictedBalance.toString(),
               operator: "<=",
             },
-            { type: "evmNetwork", networks: ["base-sepolia"], operator: "in" },
           ],
         },
       ],
@@ -74,6 +74,7 @@ async function main() {
     update: { accountPolicy: policy.id },
   });
 
+  // Initialize AgentKit with our CDP V2 Wallet provider and address.
   const walletProvider = await CdpV2EvmWalletProvider.configureWithWallet({
     apiKeyId: process.env.CDP_API_KEY_ID,
     apiKeySecret: process.env.CDP_API_KEY_SECRET,

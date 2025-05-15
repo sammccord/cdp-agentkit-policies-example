@@ -17,7 +17,9 @@ Setup environment variables:
 cp .env.example .env
 ```
 
-We'll need the following:
+Head over to the [CDP Portal](https://portal.cdp.coinbase.com/), generate a new API key, and wallet secret.
+
+To run the example, we'll need the following:
 
 ```bash
 CDP_API_KEY_ID="YOUR_API_KEY_ID"
